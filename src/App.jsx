@@ -467,7 +467,8 @@ function LoginPage({ onLogin }) {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-
+  
+  const api = useApi(API_URL, '');
   const submit = async (e) => {
     e.preventDefault();
     if (!username.trim() || !password) {
@@ -479,7 +480,6 @@ function LoginPage({ onLogin }) {
     setError('');
 
     try {
-      const api = useApi(API_URL, '');
       const res = await api.login(username.trim(), password);
 
       if (!res.ok) {
